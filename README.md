@@ -5,7 +5,7 @@
 
 ## Description
 
-Loan Test
+Loan Test 
 
 ## 1 Project setup
 
@@ -63,7 +63,3 @@ $ npm run start:prod
 ```bash
 # unit tests
 $ npm run test
-
-
-
-# LoanExam
