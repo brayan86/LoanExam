@@ -1,5 +1,7 @@
 import { User } from "src/auth/entities/user.entity";
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Payment } from "src/payment/entities/payment.entity";
+import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+
 
 @Entity('loans')
 export class Loan {
@@ -57,5 +59,11 @@ export class Loan {
         (user) => user.loan
     )
     user:User
+
+    @OneToMany(
+        () => Payment,
+        (payment) => payment.loan
+    )
+    payment:Payment
 
 }

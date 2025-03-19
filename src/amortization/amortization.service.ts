@@ -13,8 +13,7 @@ export class AmortizationService {
     @InjectRepository(Loan)
     private readonly loanRepository: Repository <Loan>
   ){}
-  async calculateLoanTable(getAmortizationDto: GetAmortizationDto) {
-    const {loanId} = getAmortizationDto
+  async calculateLoanTable(loanId:number) {
     const loan = await this.loanRepository.findOne({where:{id:loanId}})
     if(!loan)
       throw new NotFoundException('loan not found')
@@ -34,8 +33,8 @@ export class AmortizationService {
   }
 
   calculateFixedAmor(amount:number, interest:number, term:number){
-    const monthly = interest/ 1200
-    const installment = (amount * monthly) / (1 - Math.pow(1 + monthly, - term))
+    const monthly = interest/ 100 / 12
+    const installment = (amount * monthly) + (amount / term)
     let balance = amount 
 
     let month = 1
@@ -60,7 +59,7 @@ export class AmortizationService {
   }
 
   calculateVariableAmor(amount:number, interest:number, term:number){
-    const monthly = interest / 1200
+    const monthly = interest / 100 / 12
     let balance = amount
 
     let month = 1

@@ -6,6 +6,7 @@ import { LoanModule } from 'src/loan/loan.module';
 @Module({
   controllers: [AmortizationController],
   providers: [AmortizationService],
-  imports:[LoanModule]
+  imports:[LoanModule],
+  exports:[AmortizationService]
 })
 export class AmortizationModule {}

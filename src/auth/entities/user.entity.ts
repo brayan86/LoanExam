@@ -1,4 +1,5 @@
 import { Loan } from "src/loan/entities/loan.entity";
+import { Payment } from "src/payment/entities/payment.entity";
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
 
@@ -24,9 +25,17 @@ export class User {
     createdAt:Date
 
     @OneToMany(
-        () => User,
-        (user) => user.loan
+        () => Loan,
+        (loan) => loan.user
     )
     loan:Loan
+
+    @OneToMany(
+        () => Payment,
+        (payment) => payment.user
+    )
+    payment: Payment
+
+
 
 }

@@ -4,6 +4,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthModule } from './auth/auth.module';
 import { LoanModule } from './loan/loan.module';
 import { AmortizationModule } from './amortization/amortization.module';
+import { PaymentModule } from './payment/payment.module';
 
 @Module({
   imports:[
@@ -20,7 +21,8 @@ import { AmortizationModule } from './amortization/amortization.module';
       autoLoadEntities:true
     }),
     LoanModule,
-    AmortizationModule
+    AmortizationModule,
+    PaymentModule
   ],
 })
 export class AppModule {}

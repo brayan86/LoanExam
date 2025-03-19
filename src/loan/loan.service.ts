@@ -5,13 +5,15 @@ import { Loan } from './entities/loan.entity';
 import { Repository } from 'typeorm';
 import { User } from 'src/auth/entities/user.entity';
 import { ApprovalLoanDto } from './dto/approval-loan-dto';
+import { AmortizationService } from 'src/amortization/amortization.service';
 
 
 @Injectable()
 export class LoanService {
   constructor(
     @InjectRepository(Loan)
-    private readonly loanRepository : Repository <Loan>
+    private readonly loanRepository : Repository <Loan>,
+    private readonly amortizationService:AmortizationService
   ){}
   async create(createLoanDto: CreateLoanDto, user:User) {
    try {
@@ -51,7 +53,7 @@ export class LoanService {
     if(!loan)
       throw new NotFoundException(`loan with id: ${id} not found`)
 
-    return {loan, amortization:[]}
+    return {loan, amortization: await this.amortizationService.calculateLoanTable(id)}
   }
 
   async approval(approvalLoanDto: ApprovalLoanDto){
