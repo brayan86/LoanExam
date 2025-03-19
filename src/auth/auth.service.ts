@@ -60,9 +60,6 @@ export class AuthService {
 
   }
 
-  findAll() {
-    return `This action returns all auth`;
-  }
 
    getJwt(payload:JwtPayload){
     const token = this.jwtService.sign(payload)

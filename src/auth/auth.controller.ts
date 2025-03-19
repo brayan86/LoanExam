@@ -10,12 +10,14 @@ export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
   @Post('user')
+  @ApiBearerAuth()
   @ApiResponse({ status: 201, description: 'Successfully created'})
   @ApiResponse({ status: 403, description: 'Forbidden'})
   create(@Body() createUserDto: CreateUserDto) {
     return this.authService.create(createUserDto);
   }
   @Post('auth')
+  @ApiBearerAuth()
   @ApiResponse({ status: 201, description: 'successfully login'})
   @ApiResponse({ status: 401, description: 'Unauthorized' })
   login(@Body() loginUserDto: LoginUserDto) {
@@ -23,6 +25,7 @@ export class AuthController {
   }
 
   @Get('auth')
+  @ApiBearerAuth()
   @ApiBearerAuth()
   @ApiResponse({ status: 201, description: 'User return successfully'})
   @ApiResponse({ status: 401, description: 'Unauthorized' })
