@@ -51,7 +51,6 @@ export class PaymentService {
 
     const payment =  this.paymentRepository.create({
       createdAt:new Date(),
-      loan,
       type: 'payment',
       user,
       amount
@@ -91,7 +90,6 @@ export class PaymentService {
 
     const payment =  this.paymentRepository.create({
       createdAt:new Date(),
-      loan,
       type: 'abono',
       user,
       amount
@@ -108,6 +106,7 @@ export class PaymentService {
  
     await this.loanRepository.save(loan)
     await this.paymentRepository.save(payment)
+
     return payment
 
 
